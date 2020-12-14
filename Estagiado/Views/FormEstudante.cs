@@ -42,13 +42,16 @@ namespace Estagiado.Views
             obj_estudante.whatsapp = txtWhatsApp.Text;
 
             //o objeto acessaDadosEstudt acessa o método CreateEstudante e cadastra um novo estudante com o obj_estudante como parametro
-            EstudantesDAO acessaDadosEstudt = new EstudantesDAO();
-            acessaDadosEstudt.CreateEstudante(obj_estudante);
+            EstudantesDAO estudanteDao = new EstudantesDAO();
+            estudanteDao.CreateEstudante(obj_estudante);
+
+            dgvEstudante.DataSource = estudanteDao.ReadEstudantes();
         }
 
         private void FormEstudante_Load(object sender, EventArgs e)
         {
-
+            EstudantesDAO listarEstudantes = new EstudantesDAO();
+            dgvEstudante.DataSource = listarEstudantes.ReadEstudantes();
         }
 
         private void cbsexo_SelectedIndexChanged(object sender, EventArgs e)

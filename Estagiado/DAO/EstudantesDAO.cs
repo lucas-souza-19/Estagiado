@@ -20,7 +20,7 @@ namespace Estagiado.DAO
             this.conexaoComMySql = ConnectionFactory.getConnection();
         }
 
-        //Criar (CREATE) um novo estudante
+        #region Método CreateEstudante - regitra um novo estudante
         public void CreateEstudante(EstudanteModel obj_estudante)
         {
             try
@@ -50,19 +50,22 @@ namespace Estagiado.DAO
                 MessageBox.Show("Erro na criação do usuario: " + erroNaCriacao);
             }
         }
+        #endregion
 
-        //ler (READ) os dados do estudante
+        #region Método ReadEstudante - busca e lista os estudantes
         public DataTable ReadEstudantes()
         {
-            string consultaSql = @"select * from estudante";
+            string cmdSelectSql = @"select * from estudante";
 
-            MySqlCommand executeComandoSql2 = new MySqlCommand(consultaSql, conexaoComMySql);
+            MySqlCommand comandoSql = new MySqlCommand(cmdSelectSql, conexaoComMySql);
 
-            executeComandoSql2.ExecuteNonQuery();
+            conexaoComMySql.Open();
 
-            MySqlDataAdapter adaptadorDados = new MySqlDataAdapter(executeComandoSql2);
+            comandoSql.ExecuteNonQuery();
 
             DataTable tbEstudantes = new DataTable();
+
+            MySqlDataAdapter adaptadorDados = new MySqlDataAdapter(comandoSql);
 
             adaptadorDados.Fill(tbEstudantes);
 
@@ -70,8 +73,9 @@ namespace Estagiado.DAO
 
             return tbEstudantes;
         }
+        #endregion
 
-        //alterar (UPDATE) os dados do estudante
+        #region Método UpdateEstudante - atualiza os dados do estudante
         public void UpdateEstudante(EstudanteModel obj_estudante)
         {
             try
@@ -101,8 +105,9 @@ namespace Estagiado.DAO
                 MessageBox.Show("Erro na alteração dos dados: " + erroNaAlteracao);
             }
         }
+        #endregion
 
-        //excluir (DELETE estudante
+        # region Método DeleteEstudante - exclui estudante
         public void DeleteEstudante(EstudanteModel obj_estudante)
         {
             try
@@ -123,6 +128,7 @@ namespace Estagiado.DAO
                 MessageBox.Show("Erro na exclusão dos dados: " + erroNaExclusao);
             }
         }
+        #endregion
     }
 }
 

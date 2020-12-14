@@ -17,7 +17,7 @@ namespace Estagiado
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormEmpresa());
+            Application.Run(new FormEstudante());
         }
     }
 }
