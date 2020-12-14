@@ -178,6 +178,7 @@
             this.dgvEstudante.RowHeadersWidth = 45;
             this.dgvEstudante.Size = new System.Drawing.Size(331, 268);
             this.dgvEstudante.TabIndex = 14;
+            this.dgvEstudante.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEstudante_CellContentClick);
             // 
             // btncadastrar
             // 

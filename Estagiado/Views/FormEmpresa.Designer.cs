@@ -44,9 +44,9 @@
             this.txtLinkEmpresa = new System.Windows.Forms.TextBox();
             this.txtEmailEmpresa = new System.Windows.Forms.TextBox();
             this.txtSenhaEmpresa = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvEmpresa = new System.Windows.Forms.DataGridView();
             this.btncadastrarempresa = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresa)).BeginInit();
             this.SuspendLayout();
             // 
             // labelNomeEmpresa
@@ -179,14 +179,14 @@
             this.txtSenhaEmpresa.Size = new System.Drawing.Size(273, 20);
             this.txtSenhaEmpresa.TabIndex = 15;
             // 
-            // dataGridView1
+            // dgvEmpresa
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(450, 31);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 45;
-            this.dataGridView1.Size = new System.Drawing.Size(291, 336);
-            this.dataGridView1.TabIndex = 16;
+            this.dgvEmpresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmpresa.Location = new System.Drawing.Point(450, 31);
+            this.dgvEmpresa.Name = "dgvEmpresa";
+            this.dgvEmpresa.RowHeadersWidth = 45;
+            this.dgvEmpresa.Size = new System.Drawing.Size(291, 336);
+            this.dgvEmpresa.TabIndex = 16;
             // 
             // btncadastrarempresa
             // 
@@ -204,7 +204,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btncadastrarempresa);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvEmpresa);
             this.Controls.Add(this.txtSenhaEmpresa);
             this.Controls.Add(this.txtEmailEmpresa);
             this.Controls.Add(this.txtLinkEmpresa);
@@ -224,7 +224,7 @@
             this.Name = "FormEmpresa";
             this.Text = "Formulário de Cadastro de Empresas";
             this.Load += new System.EventHandler(this.FormEmpresa_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmpresa)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -248,7 +248,7 @@
         private System.Windows.Forms.TextBox txtLinkEmpresa;
         private System.Windows.Forms.TextBox txtEmailEmpresa;
         private System.Windows.Forms.TextBox txtSenhaEmpresa;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvEmpresa;
         private System.Windows.Forms.Button btncadastrarempresa;
     }
 }

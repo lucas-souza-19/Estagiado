@@ -41,7 +41,7 @@ namespace Estagiado.Views
             obj_estudante.telefone = txtFone.Text;
             obj_estudante.whatsapp = txtWhatsApp.Text;
 
-            //o objeto acessaDadosEstudt acessa o método CreateEstudante e cadastra um novo estudante com o obj_estudante como parametro
+            //o objeto estudanteDao acessa o método CreateEstudante e cadastra um novo estudante com o obj_estudante como parametro
             EstudantesDAO estudanteDao = new EstudantesDAO();
             estudanteDao.CreateEstudante(obj_estudante);
 
@@ -55,6 +55,11 @@ namespace Estagiado.Views
         }
 
         private void cbsexo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvEstudante_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

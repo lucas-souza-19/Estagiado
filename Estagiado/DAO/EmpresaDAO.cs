@@ -20,6 +20,7 @@ namespace Estagiado.DAO
             this.connection = ConnectionFactory.getConnection();
         }
 
+        #region Método CreateEmpresa - registra uma nova empresa
         public void CreateEmpresa(EmpresaModel empresa)
         {
             try
@@ -50,7 +51,9 @@ namespace Estagiado.DAO
                 MessageBox.Show("Erro ao cadastrar: " + erroCadastro);
             }
         }
+        #endregion
 
+        #region Método ReadEmpresas - busca empresas registradas
         public DataTable ReadEmpresas()
         {
             string selectSql = @"select * from empresa";
@@ -69,7 +72,9 @@ namespace Estagiado.DAO
 
             return tbEmpresas;
         }
+        #endregion
 
+        #region Método UpdateEmpresa - atualiza os dados da empresa
         public void UpdateEmpresa(EmpresaModel empresa)
         {
             try
@@ -100,7 +105,9 @@ namespace Estagiado.DAO
                 MessageBox.Show("Erro ao atualizar cadastro: " + erroAtualizacao);
             }
         }
+        #endregion
 
+        #region Método DeleteEmpresa - exclui os dados da empresa
         public void DeleteEmpresa(EmpresaModel empresa)
         {
             try
@@ -122,5 +129,6 @@ namespace Estagiado.DAO
                 MessageBox.Show("Erro ao excluir: " + erroDeletar);
             }
         }
+        #endregion
     }
 }
