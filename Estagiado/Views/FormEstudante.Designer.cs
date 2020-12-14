@@ -185,7 +185,7 @@
             this.btncadastrar.Name = "btncadastrar";
             this.btncadastrar.Size = new System.Drawing.Size(103, 23);
             this.btncadastrar.TabIndex = 15;
-            this.btncadastrar.Text = "Criar Cadastro";
+            this.btncadastrar.Text = "Cadastrar";
             this.btncadastrar.UseVisualStyleBackColor = true;
             this.btncadastrar.Click += new System.EventHandler(this.btncadastrar_Click);
             // 
@@ -211,7 +211,7 @@
             this.Controls.Add(this.labelCpf);
             this.Controls.Add(this.labelNome);
             this.Name = "FormEstudante";
-            this.Text = "FormEstudante";
+            this.Text = "Formulário de Cadastro de Estudantes";
             this.Load += new System.EventHandler(this.FormEstudante_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstudante)).EndInit();
             this.ResumeLayout(false);

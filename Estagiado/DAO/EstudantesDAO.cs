@@ -93,6 +93,8 @@ namespace Estagiado.DAO
                 executarComandoSql2.ExecuteNonQuery();
 
                 conexaoComMySql.Close();
+
+                MessageBox.Show("Atualizado com sucesso!");
             }
             catch(Exception erroNaAlteracao)
             {
@@ -101,18 +103,20 @@ namespace Estagiado.DAO
         }
 
         //excluir (DELETE estudante
-        public void DeleteEstudante(EstudanteModel estudante)
+        public void DeleteEstudante(EstudanteModel obj_estudante)
         {
             try
             {
-                string sqlCmd = @"delete from estudante where id = @codigo_id";
+                string sqlCmd = @"delete from estudante where id = @id";
 
                 MySqlCommand execCmdSql = new MySqlCommand(sqlCmd, conexaoComMySql);
-                execCmdSql.Parameters.AddWithValue("@id", estudante.id);
+                execCmdSql.Parameters.AddWithValue("@id", obj_estudante.id);
 
                 execCmdSql.ExecuteNonQuery();
 
                 conexaoComMySql.Close();
+
+                MessageBox.Show("Excluido com sucesso!");
             }
             catch (Exception erroNaExclusao)
             {
