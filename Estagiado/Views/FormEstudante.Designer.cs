@@ -35,7 +35,6 @@
             this.labelFone = new System.Windows.Forms.Label();
             this.labelWhatsApp = new System.Windows.Forms.Label();
             this.txtNome = new System.Windows.Forms.TextBox();
-            this.txtCpf = new System.Windows.Forms.TextBox();
             this.txtFone = new System.Windows.Forms.TextBox();
             this.labelSenha = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
@@ -44,6 +43,11 @@
             this.txtWhatsApp = new System.Windows.Forms.TextBox();
             this.dgvEstudante = new System.Windows.Forms.DataGridView();
             this.btncadastrar = new System.Windows.Forms.Button();
+            this.btnAlterarEstudante = new System.Windows.Forms.Button();
+            this.btnExcluirEstudante = new System.Windows.Forms.Button();
+            this.labelId = new System.Windows.Forms.Label();
+            this.txtIdEstudante = new System.Windows.Forms.TextBox();
+            this.txtCpf = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEstudante)).BeginInit();
             this.SuspendLayout();
             // 
@@ -105,21 +109,14 @@
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(118, 66);
+            this.txtNome.Location = new System.Drawing.Point(124, 66);
             this.txtNome.Name = "txtNome";
             this.txtNome.Size = new System.Drawing.Size(261, 20);
             this.txtNome.TabIndex = 6;
             // 
-            // txtCpf
-            // 
-            this.txtCpf.Location = new System.Drawing.Point(118, 102);
-            this.txtCpf.Name = "txtCpf";
-            this.txtCpf.Size = new System.Drawing.Size(261, 20);
-            this.txtCpf.TabIndex = 7;
-            // 
             // txtFone
             // 
-            this.txtFone.Location = new System.Drawing.Point(118, 275);
+            this.txtFone.Location = new System.Drawing.Point(124, 275);
             this.txtFone.Name = "txtFone";
             this.txtFone.Size = new System.Drawing.Size(261, 20);
             this.txtFone.TabIndex = 8;
@@ -135,14 +132,14 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(118, 184);
+            this.txtEmail.Location = new System.Drawing.Point(124, 184);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(261, 20);
             this.txtEmail.TabIndex = 10;
             // 
             // txtSenha
             // 
-            this.txtSenha.Location = new System.Drawing.Point(118, 229);
+            this.txtSenha.Location = new System.Drawing.Point(124, 229);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
             this.txtSenha.Size = new System.Drawing.Size(261, 20);
@@ -154,7 +151,7 @@
             this.cbsexo.Items.AddRange(new object[] {
             "F",
             "M"});
-            this.cbsexo.Location = new System.Drawing.Point(118, 142);
+            this.cbsexo.Location = new System.Drawing.Point(124, 142);
             this.cbsexo.Name = "cbsexo";
             this.cbsexo.Size = new System.Drawing.Size(261, 21);
             this.cbsexo.TabIndex = 12;
@@ -162,9 +159,9 @@
             // 
             // txtWhatsApp
             // 
-            this.txtWhatsApp.Location = new System.Drawing.Point(131, 314);
+            this.txtWhatsApp.Location = new System.Drawing.Point(124, 314);
             this.txtWhatsApp.Name = "txtWhatsApp";
-            this.txtWhatsApp.Size = new System.Drawing.Size(248, 20);
+            this.txtWhatsApp.Size = new System.Drawing.Size(261, 20);
             this.txtWhatsApp.TabIndex = 13;
             // 
             // dgvEstudante
@@ -178,6 +175,7 @@
             this.dgvEstudante.RowHeadersWidth = 45;
             this.dgvEstudante.Size = new System.Drawing.Size(331, 268);
             this.dgvEstudante.TabIndex = 14;
+            this.dgvEstudante.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEstudante_CellClick);
             this.dgvEstudante.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEstudante_CellContentClick);
             // 
             // btncadastrar
@@ -190,11 +188,62 @@
             this.btncadastrar.UseVisualStyleBackColor = true;
             this.btncadastrar.Click += new System.EventHandler(this.btncadastrar_Click);
             // 
+            // btnAlterarEstudante
+            // 
+            this.btnAlterarEstudante.Location = new System.Drawing.Point(415, 378);
+            this.btnAlterarEstudante.Name = "btnAlterarEstudante";
+            this.btnAlterarEstudante.Size = new System.Drawing.Size(103, 23);
+            this.btnAlterarEstudante.TabIndex = 16;
+            this.btnAlterarEstudante.Text = "Alterar";
+            this.btnAlterarEstudante.UseVisualStyleBackColor = true;
+            this.btnAlterarEstudante.Click += new System.EventHandler(this.btnAlterarEstudante_Click);
+            // 
+            // btnExcluirEstudante
+            // 
+            this.btnExcluirEstudante.Location = new System.Drawing.Point(556, 378);
+            this.btnExcluirEstudante.Name = "btnExcluirEstudante";
+            this.btnExcluirEstudante.Size = new System.Drawing.Size(103, 23);
+            this.btnExcluirEstudante.TabIndex = 17;
+            this.btnExcluirEstudante.Text = "Excluir";
+            this.btnExcluirEstudante.UseVisualStyleBackColor = true;
+            this.btnExcluirEstudante.Click += new System.EventHandler(this.btnExcluirEstudante_Click);
+            // 
+            // labelId
+            // 
+            this.labelId.AutoSize = true;
+            this.labelId.Location = new System.Drawing.Point(62, 361);
+            this.labelId.Name = "labelId";
+            this.labelId.Size = new System.Drawing.Size(17, 15);
+            this.labelId.TabIndex = 18;
+            this.labelId.Text = "Id";
+            this.labelId.Visible = false;
+            // 
+            // txtIdEstudante
+            // 
+            this.txtIdEstudante.Location = new System.Drawing.Point(85, 358);
+            this.txtIdEstudante.Name = "txtIdEstudante";
+            this.txtIdEstudante.Size = new System.Drawing.Size(39, 20);
+            this.txtIdEstudante.TabIndex = 19;
+            this.txtIdEstudante.Visible = false;
+            // 
+            // txtCpf
+            // 
+            this.txtCpf.Location = new System.Drawing.Point(124, 103);
+            this.txtCpf.Mask = "000,000,000-00";
+            this.txtCpf.Name = "txtCpf";
+            this.txtCpf.Size = new System.Drawing.Size(261, 20);
+            this.txtCpf.TabIndex = 20;
+            // 
             // FormEstudante
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtCpf);
+            this.Controls.Add(this.txtIdEstudante);
+            this.Controls.Add(this.labelId);
+            this.Controls.Add(this.btnExcluirEstudante);
+            this.Controls.Add(this.btnAlterarEstudante);
             this.Controls.Add(this.btncadastrar);
             this.Controls.Add(this.dgvEstudante);
             this.Controls.Add(this.txtWhatsApp);
@@ -203,7 +252,6 @@
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.labelSenha);
             this.Controls.Add(this.txtFone);
-            this.Controls.Add(this.txtCpf);
             this.Controls.Add(this.txtNome);
             this.Controls.Add(this.labelWhatsApp);
             this.Controls.Add(this.labelFone);
@@ -229,7 +277,6 @@
         private System.Windows.Forms.Label labelFone;
         private System.Windows.Forms.Label labelWhatsApp;
         private System.Windows.Forms.TextBox txtNome;
-        private System.Windows.Forms.TextBox txtCpf;
         private System.Windows.Forms.TextBox txtFone;
         private System.Windows.Forms.Label labelSenha;
         private System.Windows.Forms.TextBox txtEmail;
@@ -238,5 +285,10 @@
         private System.Windows.Forms.TextBox txtWhatsApp;
         private System.Windows.Forms.DataGridView dgvEstudante;
         private System.Windows.Forms.Button btncadastrar;
+        private System.Windows.Forms.Button btnAlterarEstudante;
+        private System.Windows.Forms.Button btnExcluirEstudante;
+        private System.Windows.Forms.Label labelId;
+        private System.Windows.Forms.TextBox txtIdEstudante;
+        private System.Windows.Forms.MaskedTextBox txtCpf;
     }
 }

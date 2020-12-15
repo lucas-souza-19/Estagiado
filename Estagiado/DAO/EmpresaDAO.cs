@@ -60,6 +60,8 @@ namespace Estagiado.DAO
 
             MySqlCommand comandoSql2 = new MySqlCommand(selectSql, connection);
 
+            connection.Open();
+
             comandoSql2.ExecuteNonQuery();
 
             MySqlDataAdapter adaptadorDados = new MySqlDataAdapter(comandoSql2);
@@ -79,7 +81,7 @@ namespace Estagiado.DAO
         {
             try
             {
-                string updateSqlCmd = @"update empresa set nome = @nome, cnpj = @cnpj, fone_comercial = @fone, ramal = @ramal, email_recrut = @email, whatsapp = @whatsapp, link_recrut = @link, senha = @senha where id = @id";
+                string updateSqlCmd = @"update empresa set nome = @nome, cnpj = @cnpj, fone_comercial = @fone, ramal = @ramal, email_recrut = @email, whatsapp = @whatsapp, link_recrut = @link, senha = @senha where id_unid_empresa = @id";
 
                 MySqlCommand comandoMysql3 = new MySqlCommand(updateSqlCmd, connection);
 
@@ -93,6 +95,8 @@ namespace Estagiado.DAO
                 comandoMysql3.Parameters.AddWithValue("@senha", empresa.Senha);
 
                 comandoMysql3.Parameters.AddWithValue("@id", empresa.Id);
+
+                connection.Open();
 
                 comandoMysql3.ExecuteNonQuery();
 
@@ -112,11 +116,13 @@ namespace Estagiado.DAO
         {
             try
             {
-                string deleteCmdSql = @"delete from empresa where @id = id";
+                string deleteCmdSql = @"delete from empresa where id_unid_empresa = @id";
 
                 MySqlCommand comandoMysql4 = new MySqlCommand(deleteCmdSql, connection);
 
                 comandoMysql4.Parameters.AddWithValue("@id", empresa.Id);
+
+                connection.Open();
 
                 comandoMysql4.ExecuteNonQuery();
 

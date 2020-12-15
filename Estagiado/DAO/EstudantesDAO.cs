@@ -80,7 +80,7 @@ namespace Estagiado.DAO
         {
             try
             {
-                string cmdUpdateSql = @"update estudante set cpf = @cpf, nome = @nome, sexo=@sexo, email = @email, fone = @fone, whatsapp = @whatsapp, senha = @senha where id = @id";
+                string cmdUpdateSql = @"update estudante set cpf = @cpf, nome = @nome, sexo=@sexo, email = @email, fone = @fone, whatsapp = @whatsapp, senha = @senha where id_estudante = @id";
 
                 MySqlCommand comandoMySql = new MySqlCommand(cmdUpdateSql, conexaoComMySql);
 
@@ -93,6 +93,8 @@ namespace Estagiado.DAO
                 comandoMySql.Parameters.AddWithValue("@senha", obj_estudante.senha);
 
                 comandoMySql.Parameters.AddWithValue("@id", obj_estudante.id);
+
+                conexaoComMySql.Open();
 
                 comandoMySql.ExecuteNonQuery();
 
@@ -112,10 +114,12 @@ namespace Estagiado.DAO
         {
             try
             {
-                string cmdSqlDelete = @"delete from estudante where id = @id";
+                string cmdSqlDelete = @"delete from estudante where id_estudante = @id";
 
                 MySqlCommand comandoMySql = new MySqlCommand(cmdSqlDelete, conexaoComMySql);
                 comandoMySql.Parameters.AddWithValue("@id", obj_estudante.id);
+
+                conexaoComMySql.Open();
 
                 comandoMySql.ExecuteNonQuery();
 

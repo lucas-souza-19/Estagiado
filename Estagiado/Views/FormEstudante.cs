@@ -31,7 +31,6 @@ namespace Estagiado.Views
 
         private void btncadastrar_Click(object sender, EventArgs e)
         {
-            //os atributos do obj_estudante receberá os dados do formulario
             EstudanteModel obj_estudante = new EstudanteModel();
             obj_estudante.nome = txtNome.Text;
             obj_estudante.cpf = txtCpf.Text;
@@ -41,11 +40,40 @@ namespace Estagiado.Views
             obj_estudante.telefone = txtFone.Text;
             obj_estudante.whatsapp = txtWhatsApp.Text;
 
-            //o objeto estudanteDao acessa o método CreateEstudante e cadastra um novo estudante com o obj_estudante como parametro
             EstudantesDAO estudanteDao = new EstudantesDAO();
             estudanteDao.CreateEstudante(obj_estudante);
 
             dgvEstudante.DataSource = estudanteDao.ReadEstudantes();
+        }
+
+        private void btnAlterarEstudante_Click(object sender, EventArgs e)
+        {
+            EstudanteModel obj_estudante = new EstudanteModel();
+            obj_estudante.nome = txtNome.Text;
+            obj_estudante.cpf = txtCpf.Text;
+            obj_estudante.sexo = cbsexo.Text;
+            obj_estudante.email = txtEmail.Text;
+            obj_estudante.senha = txtSenha.Text;
+            obj_estudante.telefone = txtFone.Text;
+            obj_estudante.whatsapp = txtWhatsApp.Text;
+
+            obj_estudante.id = int.Parse(txtIdEstudante.Text);
+
+            EstudantesDAO estudanteDao = new EstudantesDAO();
+            estudanteDao.UpdateEstudante(obj_estudante);
+
+            dgvEstudante.DataSource = estudanteDao.ReadEstudantes();
+        }
+
+        private void btnExcluirEstudante_Click(object sender, EventArgs e)
+        {
+            EstudanteModel estudanteModel = new EstudanteModel();
+            estudanteModel.id = int.Parse(txtIdEstudante.Text);
+
+            EstudantesDAO estudantesDAO = new EstudantesDAO();
+            estudantesDAO.DeleteEstudante(estudanteModel);
+
+            dgvEstudante.DataSource = estudantesDAO.ReadEstudantes();
         }
 
         private void FormEstudante_Load(object sender, EventArgs e)
@@ -63,5 +91,18 @@ namespace Estagiado.Views
         {
 
         }
+
+        private void dgvEstudante_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtIdEstudante.Text = dgvEstudante.CurrentRow.Cells[0].Value.ToString();
+            txtCpf.Text = dgvEstudante.CurrentRow.Cells[1].Value.ToString();
+            txtNome.Text = dgvEstudante.CurrentRow.Cells[2].Value.ToString();
+            cbsexo.Text = dgvEstudante.CurrentRow.Cells[3].Value.ToString();
+            txtEmail.Text = dgvEstudante.CurrentRow.Cells[4].Value.ToString();
+            txtFone.Text = dgvEstudante.CurrentRow.Cells[5].Value.ToString();
+            txtWhatsApp.Text = dgvEstudante.CurrentRow.Cells[6].Value.ToString();
+            txtSenha.Text = dgvEstudante.CurrentRow.Cells[7].Value.ToString();
+        }
+
     }
 }
