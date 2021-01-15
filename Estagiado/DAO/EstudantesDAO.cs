@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Estagiado.Conexao;
 using MySql.Data.MySqlClient;
 using Estagiado.Models;
@@ -25,17 +21,27 @@ namespace Estagiado.DAO
         {
             try
             {
-                string cmdInsertSql = @"insert into estudante (cpf, nome, sexo, email, fone, whatsapp, senha) values (@cpf, @nome, @sexo, @email, @fone, @whatsapp, @senha)";
+                string cmdInsertSql = @"insert into estudante (nome, cpf, sexo, email, fone, 
+                                                               whatsapp, senha, endereco, cidade, 
+                                                               estado, cod_universidade, nivel_acesso) 
+                                                       values (@nome, @cpf,  @sexo, @email, @fone, 
+                                                               @whatsapp, @senha, @endereco, @cidade,
+                                                               @estado, @cod_universidade, @nivel_acesso)";
 
                 MySqlCommand comandoSql = new MySqlCommand(cmdInsertSql, conexaoComMySql);
 
-                comandoSql.Parameters.AddWithValue("@cpf", obj_estudante.cpf);
-                comandoSql.Parameters.AddWithValue("@nome", obj_estudante.nome);
-                comandoSql.Parameters.AddWithValue("@sexo", obj_estudante.sexo);
-                comandoSql.Parameters.AddWithValue("@email", obj_estudante.email);
-                comandoSql.Parameters.AddWithValue("@fone", obj_estudante.telefone);
-                comandoSql.Parameters.AddWithValue("@whatsapp", obj_estudante.whatsapp);
-                comandoSql.Parameters.AddWithValue("@senha", obj_estudante.senha);
+                comandoSql.Parameters.AddWithValue("@nome", obj_estudante.Nome);
+                comandoSql.Parameters.AddWithValue("@cpf", obj_estudante.Cpf);             
+                comandoSql.Parameters.AddWithValue("@sexo", obj_estudante.Sexo);
+                comandoSql.Parameters.AddWithValue("@email", obj_estudante.Email);
+                comandoSql.Parameters.AddWithValue("@fone", obj_estudante.Fone);
+                comandoSql.Parameters.AddWithValue("@whatsapp", obj_estudante.Whatsapp);
+                comandoSql.Parameters.AddWithValue("@senha", obj_estudante.Senha);
+                comandoSql.Parameters.AddWithValue("@endereco", obj_estudante.Endereco);
+                comandoSql.Parameters.AddWithValue("@cidade", obj_estudante.Cidade);
+                comandoSql.Parameters.AddWithValue("@estado", obj_estudante.Estado);
+                comandoSql.Parameters.AddWithValue("@cod_universidade", obj_estudante.CodUniversidade);
+                comandoSql.Parameters.AddWithValue("@nivel_acesso", obj_estudante.NivelAcesso);
 
                 conexaoComMySql.Open();
 
@@ -43,7 +49,7 @@ namespace Estagiado.DAO
 
                 conexaoComMySql.Close();
 
-                MessageBox.Show("Cadastrado com sucesso!");
+                MessageBox.Show("Estudante cadastrado com sucesso!");
             }
             catch (Exception erroNaCriacao)
             {
@@ -52,12 +58,79 @@ namespace Estagiado.DAO
         }
         #endregion
 
-        #region Método ReadEstudante - busca e lista os estudantes
+        #region Método ReadEstudante - busca e lista todos os estudantes e suas universidades
         public DataTable ReadEstudantes()
         {
-            string cmdSelectSql = @"select * from estudante";
+            string cmdSelectSql = @"SELECT e.id_estudante as 'ID', e.nome as 'Nome', e.email as 'Email', 
+                                           u.curso as 'Curso', u.nome as 'Universidade', 
+                                           u.cidade as 'Localidade', 
+                                           u.avaliacao_mec as 'Nota Enade', 
+                                           e.cidade as 'Residencia', e.endereco as 'Endereco', 
+                                           e.estado as 'Estado', e.whatsapp as 'WhatsApp', 
+                                           e.fone as 'Telefone' 
+                                    FROM estudante as e JOIN universidade as u 
+                                    on (e.cod_universidade = u.id_universidade) order by Nome asc";
 
             MySqlCommand comandoSql = new MySqlCommand(cmdSelectSql, conexaoComMySql);
+
+            conexaoComMySql.Open();
+
+            comandoSql.ExecuteNonQuery();
+
+            DataTable tbEstudantes = new DataTable();
+
+            MySqlDataAdapter adaptadorDados = new MySqlDataAdapter(comandoSql);
+
+            adaptadorDados.Fill(tbEstudantes);
+
+            conexaoComMySql.Close();
+
+            return tbEstudantes;
+        }
+        #endregion
+
+        #region Método ReadEstudantes2 - busca e lista os dados de um estudante atraves do seu ID
+        public DataTable ReadEstudantes2(int id)
+        {
+            string cmdSelectSql = @"SELECT e.nome as 'Nome', e.cpf as 'CPF', e.sexo as 'Sexo', 
+                                           e.email as 'Email', e.fone as 'Telefone', e.whatsapp as 'WhatsApp', 
+                                           e.senha as 'Senha', e.endereco as 'Endereco', e.cidade as 'Cidade', 
+                                           e.estado as 'Estado', e.cod_universidade as 'Universidade', e.id_estudante as 'ID' 
+                                    FROM estudante as e 
+                                    WHERE e.id_estudante = @id";
+
+            MySqlCommand comandoSql = new MySqlCommand(cmdSelectSql, conexaoComMySql);
+
+            comandoSql.Parameters.AddWithValue("@id", id);
+
+            conexaoComMySql.Open();
+
+            comandoSql.ExecuteNonQuery();
+
+            DataTable tbEstudantes = new DataTable();
+
+            MySqlDataAdapter adaptadorDados = new MySqlDataAdapter(comandoSql);
+
+            adaptadorDados.Fill(tbEstudantes);
+
+            conexaoComMySql.Close();
+
+            return tbEstudantes;
+        }
+        #endregion
+
+        #region Método ReadEstudantes3 - recupera o ID de um estudante através do seu email e da sua senha
+        public DataTable ReadEstudantes3(string cpf, string senha)
+        {
+    
+            string cmdSelectSql = @"SELECT e.id_estudante as 'ID' 
+                                    FROM estudante as e 
+                                    WHERE cpf = @cpf and senha = @senha";
+
+            MySqlCommand comandoSql = new MySqlCommand(cmdSelectSql, conexaoComMySql);
+
+            comandoSql.Parameters.AddWithValue("@cpf", cpf);
+            comandoSql.Parameters.AddWithValue("@senha", senha);
 
             conexaoComMySql.Open();
 
@@ -80,19 +153,28 @@ namespace Estagiado.DAO
         {
             try
             {
-                string cmdUpdateSql = @"update estudante set cpf = @cpf, nome = @nome, sexo=@sexo, email = @email, fone = @fone, whatsapp = @whatsapp, senha = @senha where id_estudante = @id";
+                string cmdUpdateSql = @"update estudante set nome = @nome, cpf = @cpf, sexo = @sexo, email = @email, 
+                                                             fone = @fone, whatsapp = @whatsapp, senha = @senha, 
+                                                             endereco = @endereco, cidade = @cidade, estado = @estado,
+                                                             cod_universidade = @cod_universidade, nivel_acesso = @nivel_acesso
+                                                       where id_estudante = @id";
 
                 MySqlCommand comandoMySql = new MySqlCommand(cmdUpdateSql, conexaoComMySql);
 
-                comandoMySql.Parameters.AddWithValue("@cpf", obj_estudante.cpf);
-                comandoMySql.Parameters.AddWithValue("@nome", obj_estudante.nome);
-                comandoMySql.Parameters.AddWithValue("@sexo", obj_estudante.sexo);
-                comandoMySql.Parameters.AddWithValue("@email", obj_estudante.email);
-                comandoMySql.Parameters.AddWithValue("@fone", obj_estudante.telefone);
-                comandoMySql.Parameters.AddWithValue("@whatsapp", obj_estudante.whatsapp);
-                comandoMySql.Parameters.AddWithValue("@senha", obj_estudante.senha);
+                comandoMySql.Parameters.AddWithValue("@nome", obj_estudante.Nome);
+                comandoMySql.Parameters.AddWithValue("@cpf", obj_estudante.Cpf);
+                comandoMySql.Parameters.AddWithValue("@sexo", obj_estudante.Sexo);
+                comandoMySql.Parameters.AddWithValue("@email", obj_estudante.Email);
+                comandoMySql.Parameters.AddWithValue("@fone", obj_estudante.Fone);
+                comandoMySql.Parameters.AddWithValue("@whatsapp", obj_estudante.Whatsapp);
+                comandoMySql.Parameters.AddWithValue("@senha", obj_estudante.Senha);
+                comandoMySql.Parameters.AddWithValue("@endereco", obj_estudante.Endereco);
+                comandoMySql.Parameters.AddWithValue("@cidade", obj_estudante.Cidade);
+                comandoMySql.Parameters.AddWithValue("@estado", obj_estudante.Estado);
+                comandoMySql.Parameters.AddWithValue("@cod_universidade", obj_estudante.CodUniversidade);
+                comandoMySql.Parameters.AddWithValue("@nivel_acesso", obj_estudante.NivelAcesso);
 
-                comandoMySql.Parameters.AddWithValue("@id", obj_estudante.id);
+                comandoMySql.Parameters.AddWithValue("@id", obj_estudante.Id);
 
                 conexaoComMySql.Open();
 
@@ -109,23 +191,34 @@ namespace Estagiado.DAO
         }
         #endregion
 
-        # region Método DeleteEstudante - exclui estudante
+        # region Método DeleteEstudante - exclui todas os dados do estudante, incluindo suas candidaturas e seu currículo
         public void DeleteEstudante(EstudanteModel obj_estudante)
         {
             try
             {
-                string cmdSqlDelete = @"delete from estudante where id_estudante = @id";
+                string deltDependencia1 = @"DELETE FROM candidata_se WHERE cod_candidato = @id";
+                string deltDependencia2 = @"DELETE FROM curriculo WHERE cod_estudante = @id";
+                string deltEstudante = @"DELETE FROM estudante WHERE id_estudante = @id";
+             
 
-                MySqlCommand comandoMySql = new MySqlCommand(cmdSqlDelete, conexaoComMySql);
-                comandoMySql.Parameters.AddWithValue("@id", obj_estudante.id);
+                MySqlCommand comandoMySql1 = new MySqlCommand(deltDependencia1, conexaoComMySql);
+                comandoMySql1.Parameters.AddWithValue("@id", obj_estudante.Id);
+
+                MySqlCommand comandoMysql2 = new MySqlCommand(deltDependencia2, conexaoComMySql);
+                comandoMysql2.Parameters.AddWithValue("@id", obj_estudante.Id);
+
+                MySqlCommand comandoMySql3 = new MySqlCommand(deltEstudante, conexaoComMySql);
+                comandoMySql3.Parameters.AddWithValue("@id", obj_estudante.Id);
 
                 conexaoComMySql.Open();
 
-                comandoMySql.ExecuteNonQuery();
+                comandoMySql1.ExecuteNonQuery();
+                comandoMysql2.ExecuteNonQuery();
+                comandoMySql3.ExecuteNonQuery();
 
                 conexaoComMySql.Close();
 
-                MessageBox.Show("Excluido com sucesso!");
+                MessageBox.Show("Dados excluidos com sucesso!");
             }
             catch (Exception erroNaExclusao)
             {

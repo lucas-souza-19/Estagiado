@@ -49,23 +49,50 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conexao\ConnectionFactory.cs" />
+    <Compile Include="DAO\CandidaturaDAO.cs" />
+    <Compile Include="DAO\CurriculoDAO.cs" />
     <Compile Include="DAO\EmpresaDAO.cs" />
     <Compile Include="DAO\EstudantesDAO.cs" />
-    <Compile Include="FormInicio.cs">
+    <Compile Include="DAO\LoginDAO.cs" />
+    <Compile Include="DAO\UniversidadeDAO.cs" />
+    <Compile Include="DAO\VagaestagioDAO.cs" />
+    <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormInicio.Designer.cs">
-      <DependentUpon>FormInicio.cs</DependentUpon>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CandidaturaModel.cs" />
+    <Compile Include="Models\CurriculoModel.cs" />
     <Compile Include="Models\EmpresaModel.cs" />
     <Compile Include="Models\EstudanteModel.cs" />
+    <Compile Include="Models\UniversidadeModel.cs" />
+    <Compile Include="Models\VagaestagioModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\FormCidade.cs">
+    <Compile Include="Views\FormAtualizarCadastro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\FormCidade.Designer.cs">
-      <DependentUpon>FormCidade.cs</DependentUpon>
+    <Compile Include="Views\FormAtualizarCadastro.Designer.cs">
+      <DependentUpon>FormAtualizarCadastro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormAtualizarCadastroEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormAtualizarCadastroEmp.Designer.cs">
+      <DependentUpon>FormAtualizarCadastroEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormAtualizarCurriculo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormAtualizarCurriculo.Designer.cs">
+      <DependentUpon>FormAtualizarCurriculo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormCurriculo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormCurriculo.Designer.cs">
+      <DependentUpon>FormCurriculo.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\FormEmpresa.cs">
       <SubType>Form</SubType>
@@ -79,8 +106,56 @@
     <Compile Include="Views\FormEstudante.Designer.cs">
       <DependentUpon>FormEstudante.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormInicio.resx">
-      <DependentUpon>FormInicio.cs</DependentUpon>
+    <Compile Include="Views\FormExcluirContaEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormExcluirContaEmp.Designer.cs">
+      <DependentUpon>FormExcluirContaEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormExcluirContaEst.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormExcluirContaEst.Designer.cs">
+      <DependentUpon>FormExcluirContaEst.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormMainEmpresa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormMainEmpresa.Designer.cs">
+      <DependentUpon>FormMainEmpresa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormMainEstudante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormMainEstudante.Designer.cs">
+      <DependentUpon>FormMainEstudante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormMenu.Designer.cs">
+      <DependentUpon>FormMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormMinhasVagasEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormMinhasVagasEmp.Designer.cs">
+      <DependentUpon>FormMinhasVagasEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormUniversidade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormUniversidade.Designer.cs">
+      <DependentUpon>FormUniversidade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FormVagaestagio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\FormVagaestagio.Designer.cs">
+      <DependentUpon>FormVagaestagio.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -91,14 +166,50 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Views\FormCidade.resx">
-      <DependentUpon>FormCidade.cs</DependentUpon>
+    <EmbeddedResource Include="Views\FormAtualizarCadastro.resx">
+      <DependentUpon>FormAtualizarCadastro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormAtualizarCadastroEmp.resx">
+      <DependentUpon>FormAtualizarCadastroEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormAtualizarCurriculo.resx">
+      <DependentUpon>FormAtualizarCurriculo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormCurriculo.resx">
+      <DependentUpon>FormCurriculo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormEmpresa.resx">
       <DependentUpon>FormEmpresa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\FormEstudante.resx">
       <DependentUpon>FormEstudante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormExcluirContaEmp.resx">
+      <DependentUpon>FormExcluirContaEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormExcluirContaEst.resx">
+      <DependentUpon>FormExcluirContaEst.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormMainEmpresa.resx">
+      <DependentUpon>FormMainEmpresa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormMainEstudante.resx">
+      <DependentUpon>FormMainEstudante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormMenu.resx">
+      <DependentUpon>FormMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormMinhasVagasEmp.aa-DJ.resx">
+      <DependentUpon>FormMinhasVagasEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormMinhasVagasEmp.resx">
+      <DependentUpon>FormMinhasVagasEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormUniversidade.resx">
+      <DependentUpon>FormUniversidade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FormVagaestagio.resx">
+      <DependentUpon>FormVagaestagio.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
