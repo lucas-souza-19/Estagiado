@@ -41,6 +41,7 @@ namespace Estagiado.Views
         {       
             FormEstudante formEstudante = new FormEstudante();
             formEstudante.Show();
+            Close();
         }
         private void dgvUniversidades_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
